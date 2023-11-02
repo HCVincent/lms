@@ -81,10 +81,10 @@ const CreatePage = () => {
                 <Button type="button" variant="ghost">
                   Cancel
                 </Button>
-                <Button type="submit" disabled={!isValid || isSubmitting}>
-                  Continue
-                </Button>
               </Link>
+              <Button type="submit" disabled={!isValid || isSubmitting}>
+                Continue
+              </Button>
             </div>
           </form>
         </Form>
