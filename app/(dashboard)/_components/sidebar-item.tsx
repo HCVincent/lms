@@ -13,6 +13,7 @@ interface SidebarItemProps {
 const SidebarItem = ({ icon: Icon, label, href }: SidebarItemProps) => {
   const pathname = usePathname();
   const router = useRouter();
+
   const isActive =
     (pathname === "/" && href === "/") ||
     pathname === href ||
