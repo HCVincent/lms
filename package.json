@@ -23,12 +23,11 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "eslint": "8.52.0",
-    "eslint-config-next": "13.4.12",
     "lucide-react": "^0.291.0",
-    "next": "13.4.12",
+    "next": "^14.0.1",
     "postcss": "8.4.31",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-hook-form": "^7.47.0",
     "react-hot-toast": "^2.4.1",
     "tailwind-merge": "^2.0.0",
@@ -38,6 +37,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "eslint-config-next": "^14.0.1",
     "prisma": "^5.5.2"
   }
 }
