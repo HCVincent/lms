@@ -6,6 +6,7 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 model Course {
@@ -28,6 +29,7 @@ model Course {
   updatedAt DateTime @updatedAt
 
   @@index([categoryId])
+  @@fulltext([title])
 }
 
 model Category {
@@ -50,7 +52,7 @@ model Attachment {
   @@index([courseId])
 }
 
-model Chapter{
+model Chapter {
   id String @id @default(uuid())
   title String
   description String? @db.Text
@@ -62,7 +64,7 @@ model Chapter{
   muxData MuxData?
 
   courseId String
-  course Course @relation(fields: [courseId],references: [id],onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   userProgress UserProgress[]
 
@@ -78,15 +80,15 @@ model MuxData {
   playbackId String?
 
   chapterId String @unique
-  chapter Chapter @relation(fields: [chapterId],references: [id],onDelete: Cascade)
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 }
 
-model UserProgress{
+model UserProgress {
   id String @id @default(uuid())
   userId String
 
   chapterId String
-  chapter Chapter @relation(fields: [chapterId],references: [id],onDelete: Cascade)
+  chapter Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 
   isCompleted Boolean @default(false)
 
@@ -94,7 +96,7 @@ model UserProgress{
   updatedAt DateTime @updatedAt
 
   @@index([chapterId])
-  @@unique([userId,chapterId])
+  @@unique([userId, chapterId])
 }
 
 model Purchase {
@@ -102,15 +104,16 @@ model Purchase {
   userId String
 
   courseId String
-  course Course @relation(fields: [courseId],references: [id],onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt()
 
+  @@unique([userId, courseId])
   @@index([courseId])
 }
 
-model Customer {
+model StripeCustomer {
   id String @id @default(uuid())
   userId String @unique
   stripeCustomerId String @unique
