@@ -6,34 +6,33 @@ import { usePathname } from "next/navigation";
 
 const guestRoutes = [
   {
-    icon: Layout,
-    label: "Dashboard",
+    icon: Compass,
+    label: "Browse",
     href: "/",
   },
   {
-    icon: Compass,
-    label: "Browse",
-    href: "/search",
+    icon: Layout,
+    label: "Dashboard",
+    href: "/dashboard",
   },
 ];
 
 const teacherRoutes = [
   {
-    icon: List,
-    label: "Courses",
-    href: "/teacher/courses",
-  },
-  {
     icon: BarChart,
     label: "Analytics",
     href: "/teacher/analytics",
+  },
+  {
+    icon: List,
+    label: "Courses",
+    href: "/teacher/courses",
   },
 ];
 
 const SidebarRoutes = () => {
   const pathname = usePathname();
   const isTeacherPage = pathname?.startsWith("/teacher");
-  const isPlayerPage = pathname?.includes("/chapter");
   const routes = isTeacherPage ? teacherRoutes : guestRoutes;
   return (
     <div className="flex flex-col w-full">

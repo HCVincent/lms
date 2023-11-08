@@ -15,6 +15,11 @@ type GetCourses = {
   categoryId?: string;
 };
 
+type GetAllCourses = {
+  title?: string;
+  categoryId?: string;
+};
+
 export const getCourses = async ({
   userId,
   title,
@@ -74,3 +79,4 @@ export const getCourses = async ({
     return [];
   }
 }
+
